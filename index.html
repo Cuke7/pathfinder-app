@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en-us">
+	<head>
+		<meta charset="UTF-8">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@json-editor/json-editor@latest/dist/jsoneditor.min.js"></script>
+		<link rel="stylesheet" href="css/styles.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+		<style type="text/css">@import "dice/main.css";</style>
+		<style type="text/css">@import "dice/dice/dice.css";</style>
+		</link>
+	</head>
+	<body>
+		
+		<div id="wrapper" class="center">
+			<canvas id="myCanvas"></canvas>
+			<div id="canvas"></div>
+		</div>
+		
+		<button class="btn_open" style="vertical-align:middle" onclick="openNav()"><span>Open menu</span></button>
+		<div id="mySidenav" class="sidenav">
+			<button class = "btn_close" onClick="closeNav()">Close menu</button>
+			<button class = "btn_close" onClick="reset()">Reset</button>
+			<button class = "btn_close" onClick="save()">Save</button>
+			<div class="sub_menu" id="bg_input">
+				<h3 id ="bg_header">Background :</h3>
+				<input type="file" id="bg_file_input" >
+				<div class = "sub_sub_menu">
+					<p style="display: inline;">Scale background :</p>
+					<input id = "scale" type = number value="100" min = "50" max = "200"></input>
+					<p style="display: inline;">%</p>
+				</div>
+				<button onclick="scale_bg()">Appliquer</button>
+				<button onclick="auto_bg()">Auto</button>
+			</div>
+			<div class="sub_menu" id="token_input">
+				<h3 id ="token_header">Insérer un token :</h3>
+				<input type="file" id="token_file_input" >
+				<div id = "wrapper">
+					<div id = "first">
+						<div class = "sub_sub_menu">
+							<p style="display: inline;">Nom :</p>
+							<input id = "token_name" type = text value = "Token 1"></input>
+						</div>
+						<img id = "token" style="display: block; vertical-align:middle; border-radius: 100%; margin: auto;" src = "assets/default.png" width=50 height=50></img>
+						<button onclick="create_token()">Créer</button>
+					</div>
+					<div id = "second">
+						<textarea id = "token_info" cols="14" rows = "9" value = "">
+						</textarea>
+					</div>
+				</div>
+				<p style="display: inline;">Redimensionner les tokens :</p>
+				<label style = "vertical-align: center;" class="switch">
+					<input id ="token_check" style = "vertical-align: center;" type="checkbox" checked>
+					<span style = "vertical-align: center;" class="slider round"></span>
+				</label>
+			</div>
+			<div class="sub_menu" id="token_input">
+				<h3 id ="token_header">Tokens</h3>
+				<div id = "token_holder" class = "sub_sub_menu">
+					<div id = "wrapper">
+						<div id = "first">
+							<div class = "sub_sub_menu">
+								<h5 id ="token_name_p"></h5>
+							</div>
+							<button id = "modify_token_button" onclick="modify_token()">Modifier</button>
+							<button id = "delete_token_button" onclick="delete_token()" style = "background-color: #a30808;">Supprimer</button>
+						</div>
+						<div id = "second">
+							<textarea id = "token_info_d" cols="14" rows = "9" value = "">
+							</textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="margin-bottom: 20px;">
+			</div>
+		</div>
+		
+		
+		
+		<div id="info_div" style="display: none">
+			<div class="center_field">
+				<span id="label"></span>
+			</div>
+			<div class="center_field">
+				<div class="bottom_field">
+					<span id="labelhelp">click to continue or tap and drag again</span>
+				</div>
+			</div>
+		</div>
+		<div id="selector_div" style="display: none">
+			<div class="center_field">
+				<div id="sethelp">
+					choose your dice set by clicking the dices or by direct input of notation,<br/>
+					tap and drag on free space of screen or hit throw button to roll
+				</div>
+			</div>
+			<div class="center_field">
+				<input type="text" id="set" value="4d6"></input><br/>
+				<button id="clear">clear</button>
+				<button style="margin-left: 0.6em" id="throw">throw</button>
+			</div>
+		</div>
+		
+		
+		
+		<button class="btn_open2" style="vertical-align:middle" onclick="openNav2()"><span>Open characters</span></button>
+		<div id="mySidenav2" class="sidenav2">
+			<button class = "btn_close" onClick="closeNav2()">Close menu</button>
+			<div id="editor_holder" class = "editor"></div>
+			<div class = "sub_menu">
+				<h3>Equipe</h3>
+				<div class = "info_team">
+					<div id ="sflo" class = "teammate">
+						<img id ="flo" class = "avatar" src = "assets/flo.jpg" onClick = "avatar_clicked(this.id)"></img>
+						<div class = "sub_sub_menu">
+							<progress id="avancement" value="50" max="100"></progress>
+							<progress id="avancement" value="50" max="100"></progress>
+							<progress id="avancement" value="50" max="100"></progress>
+						</div>
+					</div>
+					<div id ="sflo" class = "teammate">
+						<img id ="flo" class = "avatar" src = "assets/flo.jpg" onClick = "avatar_clicked(this.id)"></img>
+						<progress id="avancement" value="50" max="100"></progress>
+						<progress id="avancement" value="50" max="100"></progress>
+						<progress id="avancement" value="50" max="100"></progress>
+					</div>
+					<div id ="sflo" class = "teammate">
+						<img id ="flo" class = "avatar" src = "assets/flo.jpg" onClick = "avatar_clicked(this.id)"></img>
+						<progress id="avancement" value="50" max="100"></progress>
+						<progress id="avancement" value="50" max="100"></progress>
+						<progress id="avancement" value="50" max="100"></progress>
+					</div>
+				</div>
+				
+			<!--	<img id ="micka" class = "avatar" src = "assets/micka.jpg" onClick = "avatar_clicked(this.id)"></img>
+				<img id ="toto" class = "avatar" src = "assets/toto.jpg" onClick = "avatar_clicked(this.id)"></img>
+				<img id ="kiki" class = "avatar" src = "assets/kiki.jpg" onClick = "avatar_clicked(this.id)"></img>
+				<img id ="louis" class = "avatar" src = "assets/louis.jpg" onClick = "avatar_clicked(this.id)"></img> -->
+			</div>
+		</div>
+		
+		
+		
+	</body>
+	<script src="scripts/jcanvas.min.js"></script>
+	<script src="scripts/jcanvas-handles.js"></script>
+	<script src="scripts/cycle.js"></script>
+	<script src="scripts/circular-json.js"></script>
+	<script src="dice/libs/three.min.js"></script>
+    <script src="dice/libs/cannon.min.js"></script>
+	
+    <script type="text/javascript" src="dice/teal.js"></script>
+    <script type="text/javascript" src="dice/dice/dice.js"></script>
+    <script type="text/javascript" src="dice/dice/main.js"></script>
+	
+	<script src="scripts/main.js"></script>
+	<script src="scripts/map.js"></script>
+	<script src="scripts/characters.js"></script>
+    <script type="text/javascript" defer="defer">
+        dice_initialize(document.body);
+	</script>
+</html>
