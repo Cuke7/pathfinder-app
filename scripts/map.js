@@ -111,7 +111,7 @@ $(document).ready(function() {
         }
     });
 
-    let names = ["Louis", "Toto", "Micka", "Flo", "Kiki"];
+    let names = ["louis", "toto", "micka", "flo", "kiki"];
     for (let i = 0; i < names.length; i++) {
         create_token_sratch(names[i], "Notes : \n", "assets/" + names[i] + ".jpg");
     }
