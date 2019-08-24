@@ -29,7 +29,7 @@ $(document).ready(function() {
 
 
     c[0].width = window.innerWidth - 80 - 90;
-    c[0].height = window.innerHeight - 100;
+    c[0].height = window.innerHeight - 150;
 
     $("#token_info").val("HP : \nPM : \nPE : \n\n");
     $("#token_info_d").val("");
@@ -107,7 +107,7 @@ $(document).ready(function() {
                     visible: true,
                 }
             }).drawLayers();
-						bg_locked = false;
+            bg_locked = false;
         }
     });
 
@@ -363,7 +363,7 @@ function delete_token() {
             active_token = null;
         } else {}
     }
-
+    token_dragged();
 }
 
 $("#bg_file_input").change(function() {

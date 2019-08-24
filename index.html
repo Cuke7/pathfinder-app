@@ -10,42 +10,49 @@
 
 
 <body>
-  <div class="menu">
-      <div style="display: inline;">
-          <p style="display: inline;">Vérouiller le background</p>
-          <label style="vertical-align: center;" class="switch">
-              <input id="bg_check" style="vertical-align: center;" type="checkbox">
-              <span style="vertical-align: center;" class="slider round"></span>
-          </label>
-      </div>
-  </div>
-    <canvas id="myCanvas"></canvas>
-    <button class="btn_open" style="vertical-align:middle" onclick="openNav()"><span>Open menu</span></button>
-    <div id="mySidenav" class="sidenav">
-        <button class="btn_close" onClick="closeNav()">Close menu</button>
-        <div class="sub_menu" id="bg_input">
-            <h3 id="bg_header">Background :</h3>
-            <input type="file" id="bg_file_input">
-            <button onclick="auto_bg()">Taille auto</button>
-        </div>
-        <div class="sub_menu" id="token_input">
-            <h3 id="token_header">Insérer un token :</h3>
-            <input type="file" id="token_file_input">
-            <div id="wrapper">
-                <div id="first">
-                    <div class="sub_sub_menu">
-                        <p style="display: inline;">Nom :</p>
-                        <input id="token_name" type=text value="Token 1"></input>
-                    </div>
-                    <img id="token" style="display: block; vertical-align:middle; border-radius: 100%; margin: auto;" src="assets/default.png" width=100 height=100></img>
-                    <button onclick="create_token(50, true)">Créer</button>
-                </div>
-                <div id="second">
-                    <textarea id="token_info" cols="14" rows="9" value="">
-						</textarea>
-                </div>
+    <div class = "div_menu">
+        <div style='display: inline-block; margin: auto;'>
+            <div class="menu">
+                <h3 style="display: inline; color: #704d28;">Insérer un token : </h3>
+                <input type="file" id="token_file_input">
+            </div>
+            <div class="menu">
+                <p style="display: inline;">Nom :</p>
+                <input id="token_name" type=text value="Token 1"></input>
+                <button onclick="create_token(50, true)" class="button_create">Créer</button>
             </div>
         </div>
+        <div style="display: inline-block; margin: auto;">
+            <img id="token" style="display: block; vertical-align:middle; border-radius: 100%; margin: auto;" src="assets/default.png" width=50 height=50></img>
+        </div>
+    </div>
+    <div class = "div_menu">
+        <div class="menu">
+            <h3 style="display: inline; color: #704d28;">Background : </h3>
+            <input type="file" id="bg_file_input">
+        </div>
+        <p style="display: inline;">Vérouiller le background</p>
+        <label style="vertical-align: center;" class="switch">
+            <input id="bg_check" style="vertical-align: center;" type="checkbox">
+            <span style="vertical-align: center;" class="slider round"></span>
+        </label>
+        <button onclick="auto_bg()" class="button_create">Taille auto</button>
+    </div>
+    <canvas id="myCanvas"></canvas>
+    <!--<button class="btn_open" style="vertical-align:middle" onclick="openNav()"><span>Open menu</span></button>-->
+    <div id="mySidenav" class="sidenav" style="display: none;">
+        <button class="btn_close" onClick="closeNav()">Close menu</button>
+        <div class="sub_menu" id="token_input">
+            <h3 id="token_header">Insérer un token :</h3>
+
+
+
+            <div id="second" style='display: none;'>
+                <textarea id="token_info" cols="14" rows="9" value="">
+						</textarea>
+            </div>
+        </div>
+    </div>
     </div>
     <div class="sub_menu" id='token_info_div'>
         <h3 id="token_name_p"></h3>

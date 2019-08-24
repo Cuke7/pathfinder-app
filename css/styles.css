@@ -6,8 +6,8 @@
     -webkit-user-select: none;
 }
 
-.menu{
-  margin: 0;
+.menu {
+    margin: 0;
 }
 
 body {
@@ -135,6 +135,14 @@ input:checked+.slider:before {
     /* if you don't want #second to wrap below #first */
 }
 
+.div_menu {
+    display: inline-block;
+    border: solid 2px #704d28;
+    border-radius: 5px;
+    padding: 5px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
 
 .sub_menu {
     display: block;
@@ -170,6 +178,20 @@ input:checked+.slider:before {
 
 .sub_menu input[type=file] {
     margin-bottom: 10px;
+}
+
+.button_create {
+    display: inline;
+    border-radius: 4px;
+    background-color: #704d28;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 14px;
+    padding: 10px;
+    margin-right: 5%;
+    margin-top: 10px;
+    min-width: 80px;
 }
 
 .sub_menu button {
